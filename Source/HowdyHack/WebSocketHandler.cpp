@@ -19,6 +19,12 @@ void AWebSocketHandler::BeginPlay()
     const FString ServerProtocol = TEXT("ws");              // The WebServer protocol you want to use.
         
     TSharedPtr<IWebSocket> Socket = FWebSocketsModule::Get().CreateWebSocket(ServerURL, ServerProtocol);
+    
+    ServerConnect();
+    SendURL("HELLO");
+    UE_LOG(YourLog, Warning, TEXT("Checkpoint A!!!!!!"));
+
+    ServerClose();
 	
 }
 
