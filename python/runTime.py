@@ -1,8 +1,8 @@
 import subprocess
 import youtube_dl
 
-def runTime(weblink='https://www.youtube.com/watch?v=dQw4w9WgXcQ'):
-    video_url = input("please enter URL:")
+def runTime(video_url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'):
+    # video_url = input("please enter URL:")
     video_info  = youtube_dl.YoutubeDL().extract_info(
         url = video_url, download = False
     )
