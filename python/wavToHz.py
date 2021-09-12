@@ -12,7 +12,7 @@ def convert(filename):
 
     win_s = 4096
     hop_s = 512 
-    samplerate = 4100
+    samplerate = 44100
 
     s = source(filename, samplerate, hop_s)
     samplerate = s.samplerate
@@ -29,24 +29,26 @@ def convert(filename):
     total_frames = 0
     while True:
         samples, read = s()
-        pitch = pitch_o(samples)[0]
-        pitches += [pitch]
+        pitchTwo = pitch_o(samples)[0]
+        pitches += [pitchTwo]
         confidence = pitch_o.get_confidence()
         confidences += [confidence]
         total_frames += read
         if read < hop_s: break
 
-    print(pitch)
+    print(pitches)
 
     # Calculate duration
 
     import wave
     import contextlib
-    fname = '/tmp/test.wav'
-    with contextlib.closing(wave.open(fname,'r')) as f:
+    with contextlib.closing(wave.open(filename,'r')) as f:
         frames = f.getnframes()
         rate = f.getframerate()
         duration = frames / float(rate)
+        print("Duration of song is: ")
         print(duration)
+
+    return pitches
 
 # print("Average frequency = " + str(np.array(pitches).mean()) + " hz")
