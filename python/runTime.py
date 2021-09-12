@@ -1,7 +1,7 @@
 import subprocess
 import youtube_dl
 
-def run():
+def runTime(weblink='https://www.youtube.com/watch?v=dQw4w9WgXcQ'):
     video_url = input("please enter URL:")
     video_info  = youtube_dl.YoutubeDL().extract_info(
         url = video_url, download = False
@@ -21,7 +21,5 @@ def run():
         ydl.download([video_info['webpage_url']])
 
     subprocess.call(["open",filename])
-
     
-if __name__ == '__main__':
-    run()
+    return f"{video_info['title']}"
