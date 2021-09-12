@@ -1,6 +1,9 @@
 import sys
 from aubio import source, pitch
+import numpy as np
 
+your_file = "DejaVu.wav"
+samplerate = 4100
 win_s = 4096
 hop_s = 512 
 
@@ -26,4 +29,5 @@ while True:
     total_frames += read
     if read < hop_s: break
 
+print(pitches)
 print("Average frequency = " + str(np.array(pitches).mean()) + " hz")
