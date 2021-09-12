@@ -1,6 +1,7 @@
 import sys
 from aubio import source, pitch
 import numpy as np
+# import matplotlib
 
 your_file = "DejaVu.wav"
 samplerate = 4100
@@ -29,5 +30,17 @@ while True:
     total_frames += read
     if read < hop_s: break
 
-print(pitches)
-print("Average frequency = " + str(np.array(pitches).mean()) + " hz")
+print(pitch)
+
+# Calculate duration
+
+import wave
+import contextlib
+fname = '/tmp/test.wav'
+with contextlib.closing(wave.open(fname,'r')) as f:
+    frames = f.getnframes()
+    rate = f.getframerate()
+    duration = frames / float(rate)
+    print(duration)
+
+# print("Average frequency = " + str(np.array(pitches).mean()) + " hz")
