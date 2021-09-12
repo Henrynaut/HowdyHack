@@ -19,4 +19,6 @@ def writeFile(rows):
         write = csv.writer(f)
         
         write.writerow(fields)
-        write.writerows(rows)
+        # Convert rows into a sequence of lists, instead of just 1 list
+        write.writerows(map(lambda x: [x], rows)
+)
