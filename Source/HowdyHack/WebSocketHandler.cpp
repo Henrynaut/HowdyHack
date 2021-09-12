@@ -20,11 +20,11 @@ void AWebSocketHandler::BeginPlay()
         
     TSharedPtr<IWebSocket> Socket = FWebSocketsModule::Get().CreateWebSocket(ServerURL, ServerProtocol);
     
-    ServerConnect();
-    SendURL("HELLO");
+    // ServerConnect();
+    // SendURL("HELLO");
     //UE_LOG(YourLog, Warning, TEXT("Checkpoint A!!!!!!"));
 
-    ServerClose();
+    // ServerClose();
 	
 }
 
@@ -35,55 +35,55 @@ void AWebSocketHandler::Tick(float DeltaTime)
 
 }
 
-void AWebSocketHandler::ServerConnect()
-{
-    // We bind all available events
-    Socket->OnConnected().AddLambda([]() -> void {
-        // This code will run once connected.
-    });
+// void AWebSocketHandler::ServerConnect()
+// {
+//     // We bind all available events
+//     Socket->OnConnected().AddLambda([]() -> void {
+//         // This code will run once connected.
+//     });
         
-    Socket->OnConnectionError().AddLambda([](const FString & Error) -> void {
-        // This code will run if the connection failed. Check Error to see what happened.
-    });
+//     Socket->OnConnectionError().AddLambda([](const FString & Error) -> void {
+//         // This code will run if the connection failed. Check Error to see what happened.
+//     });
         
-    Socket->OnClosed().AddLambda([](int32 StatusCode, const FString& Reason, bool bWasClean) -> void {
-        // This code will run when the connection to the server has been terminated.
-        // Because of an error or a call to Socket->Close().
-    });
+//     Socket->OnClosed().AddLambda([](int32 StatusCode, const FString& Reason, bool bWasClean) -> void {
+//         // This code will run when the connection to the server has been terminated.
+//         // Because of an error or a call to Socket->Close().
+//     });
         
-    Socket->OnMessage().AddLambda([](const FString & Message) -> void {
-        // This code will run when we receive a string message from the server.
-    });
+//     Socket->OnMessage().AddLambda([](const FString & Message) -> void {
+//         // This code will run when we receive a string message from the server.
+//     });
         
-    Socket->OnRawMessage().AddLambda([](const void* Data, SIZE_T Size, SIZE_T BytesRemaining) -> void {
-        // This code will run when we receive a raw (binary) message from the server.
-    });
+//     Socket->OnRawMessage().AddLambda([](const void* Data, SIZE_T Size, SIZE_T BytesRemaining) -> void {
+//         // This code will run when we receive a raw (binary) message from the server.
+//     });
         
-    Socket->OnMessageSent().AddLambda([](const FString& MessageString) -> void {
-        // This code is called after we sent a message to the server.
-    });
+//     Socket->OnMessageSent().AddLambda([](const FString& MessageString) -> void {
+//         // This code is called after we sent a message to the server.
+//     });
         
-    // And we finally connect to the server.
-    Socket->Connect();
-}
+//     // And we finally connect to the server.
+//     Socket->Connect();
+// }
 
-void AWebSocketHandler::SendURL(FString URL)
-{
-    if (!Socket->IsConnected())
-    {
-        // Don't send if we're not connected.
-        return;
-    }
+// void AWebSocketHandler::SendURL(FString URL)
+// {
+//     if (!Socket->IsConnected())
+//     {
+//         // Don't send if we're not connected.
+//         return;
+//     }
         
-    const FString StringMessage = TEXT("Hello there !");
-    const TArray BinaryMessage = { 'H', 'e', 'l', 'l', 'o', ' ', 't', 'h', 'e', 'r', 'e', ' ', '!' };
+//     const FString StringMessage = TEXT("Hello there !");
+//     const TArray BinaryMessage = { 'H', 'e', 'l', 'l', 'o', ' ', 't', 'h', 'e', 'r', 'e', ' ', '!' };
       
-    Socket->Send(StringMessage);
-    Socket->Send(BinaryMessage.GetData(), sizeof(uint8) * BinaryMessage.Num());
-}
+//     Socket->Send(StringMessage);
+//     Socket->Send(BinaryMessage.GetData(), sizeof(uint8) * BinaryMessage.Num());
+// }
 
-void AWebSocketHandler::ServerClose()
-{
-    Socket->Close()
-}
+// void AWebSocketHandler::ServerClose()
+// {
+//     Socket->Close()
+// }
 
