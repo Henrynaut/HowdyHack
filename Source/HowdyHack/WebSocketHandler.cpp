@@ -22,7 +22,7 @@ void AWebSocketHandler::BeginPlay()
     
     ServerConnect();
     SendURL("HELLO");
-    UE_LOG(YourLog, Warning, TEXT("Checkpoint A!!!!!!"));
+    //UE_LOG(YourLog, Warning, TEXT("Checkpoint A!!!!!!"));
 
     ServerClose();
 	
