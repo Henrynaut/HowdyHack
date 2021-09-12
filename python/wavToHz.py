@@ -49,4 +49,6 @@ def convert(filename):
         print("Duration of song is: ")
         print(duration)
 
+    return pitches
+
 # print("Average frequency = " + str(np.array(pitches).mean()) + " hz")
